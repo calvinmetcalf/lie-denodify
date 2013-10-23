@@ -1,14 +1,23 @@
-```javascript
-var all = require('lia-all');
+# lie-reject
+
+
+## API
+
+```bash
+npm install lie-reject
 ```
 
-###all
-
 ```javascript
-all(array of promises)
+var reject = require('lie-reject');
 ```
 
-returns a promise for an array of all the responses, returns an error if any of the promises throw errors. Returned values are in the same order as the input array.
+###resolve
+
+```javascript
+reject(value)
+```
+
+create a promise that is reject with this reason.
 
 
 ## License
