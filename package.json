@@ -1,14 +1,14 @@
 {
-  "name": "lie-map",
+  "name": "lie-race",
   "version": "0.1.0",
-  "description": "map all the lies",
-  "main": "lib/map.js",
+  "description": "the race is a lie",
+  "main": "lib/race.js",
   "scripts": {
     "test": "./node_modules/istanbul/lib/cli.js test ./node_modules/mocha/bin/_mocha test/test.js"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/calvinmetcalf/lie-map.git"
+    "url": "git://github.com/calvinmetcalf/lie-race.git"
   },
   "keywords": [
     "lie",
@@ -17,20 +17,16 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/calvinmetcalf/lie-map/issues"
+    "url": "https://github.com/calvinmetcalf/lie-race/issues"
   },
   "devDependencies": {
     "mocha-as-promised": "~1.4.0",
     "chai-as-promised": "~4.0.0",
     "chai": "~1.8.1",
     "mocha": "~1.13.0",
-    "istanbul": "~0.1.44",
-    "lie-reject": "~0.1.1",
-    "lie": "~2.0.6"
+    "istanbul": "~0.1.44"
   },
   "dependencies": {
-    "lie-resolve": "~0.1.0",
-    "lie-use": "~0.1.0",
-    "lie-all": "~0.1.0"
+    "lie": "~2.0.6"
   }
 }

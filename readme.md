@@ -1,24 +1,25 @@
-# lie-map
+# lie-race
 
 
 ## API
 
 ```bash
-npm install lie-map
+npm install lie-race
 ```
 
 ```javascript
-var map = require('lie-map');
+var race = require('lie-race');
 ```
 
-###map
+###race
 
 ```javascript
-map(array of promises, function)
+race(array of promises)
 ```
 
-Takes the array of values, applies function to them, and returns a promise for all the values. Function will be called with a value (not a promise) and may return either a promise or a value, array can filled with promises or values or a mixture.
+resolved with whatever value or error that resolves first.
 
+should be obvious but fyi, this can cause race conditions.
 
 ## License
 
