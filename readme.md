@@ -1,23 +1,23 @@
-# lie-use
+# lie-map
 
 
 ## API
 
 ```bash
-npm install lie-use
+npm install lie-map
 ```
 
 ```javascript
-var use = require('lie-use');
+var map = require('lie-map');
 ```
 
-###use
+###map
 
 ```javascript
-use(value or promise, function)
+map(array of promises, function)
 ```
 
-If the value is a promise, apply the function to the value it resolves into and return a promise for that, otherwise apply the function to the value and return the result.
+Takes the array of values, applies function to them, and returns a promise for all the values. Function will be called with a value (not a promise) and may return either a promise or a value, array can filled with promises or values or a mixture.
 
 
 ## License

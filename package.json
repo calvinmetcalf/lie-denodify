@@ -1,14 +1,14 @@
 {
-  "name": "lie-use",
+  "name": "lie-map",
   "version": "0.1.0",
-  "description": "use all the lies",
-  "main": "lib/use.js",
+  "description": "map all the lies",
+  "main": "lib/map.js",
   "scripts": {
     "test": "./node_modules/istanbul/lib/cli.js test ./node_modules/mocha/bin/_mocha test/test.js"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/calvinmetcalf/lie-use.git"
+    "url": "git://github.com/calvinmetcalf/lie-map.git"
   },
   "keywords": [
     "lie",
@@ -17,7 +17,7 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/calvinmetcalf/lie-use/issues"
+    "url": "https://github.com/calvinmetcalf/lie-map/issues"
   },
   "devDependencies": {
     "mocha-as-promised": "~1.4.0",
@@ -25,6 +25,12 @@
     "chai": "~1.8.1",
     "mocha": "~1.13.0",
     "istanbul": "~0.1.44",
+    "lie-reject": "~0.1.1",
     "lie": "~2.0.6"
+  },
+  "dependencies": {
+    "lie-resolve": "~0.1.0",
+    "lie-use": "~0.1.0",
+    "lie-all": "~0.1.0"
   }
 }
