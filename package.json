@@ -1,14 +1,14 @@
 {
-  "name": "liar",
-  "version": "0.0.7",
-  "description": "a tool belt of deceit",
-  "main": "lib/index.js",
+  "name": "lie-all",
+  "version": "0.1.0",
+  "description": "all of the lies",
+  "main": "lib/all.js",
   "scripts": {
     "test": "./node_modules/istanbul/lib/cli.js test ./node_modules/mocha/bin/_mocha test/test.js"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/calvinmetcalf/liar.git"
+    "url": "git://github.com/calvinmetcalf/lie-all.git"
   },
   "keywords": [
     "lie",
@@ -17,14 +17,9 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/calvinmetcalf/liar/issues"
+    "url": "https://github.com/calvinmetcalf/lie-all/issues"
   },
   "devDependencies": {
-    "grunt-contrib-uglify": "~0.2.4",
-    "grunt": "~0.4.1",
-    "grunt-contrib-jshint": "~0.6.4",
-    "browserify": "~2.34.1",
-    "grunt-browserify": "~1.2.9",
     "mocha-as-promised": "~1.4.0",
     "chai-as-promised": "~4.0.0",
     "chai": "~1.8.1",
@@ -32,6 +27,7 @@
     "istanbul": "~0.1.44"
   },
   "dependencies": {
-    "lie": "~2.0.6"
+    "lie": "~2.0.6",
+    "lie-cast": "~0.1.1"
   }
 }
