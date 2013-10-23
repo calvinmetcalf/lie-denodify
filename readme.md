@@ -1,23 +1,23 @@
-# lie-reject
+# lie-use
 
 
 ## API
 
 ```bash
-npm install lie-reject
+npm install lie-use
 ```
 
 ```javascript
-var reject = require('lie-reject');
+var use = require('lie-use');
 ```
 
-###resolve
+###use
 
 ```javascript
-reject(value)
+use(value or promise, function)
 ```
 
-create a promise that is reject with this reason.
+If the value is a promise, apply the function to the value it resolves into and return a promise for that, otherwise apply the function to the value and return the result.
 
 
 ## License
