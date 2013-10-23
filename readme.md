@@ -1,23 +1,23 @@
-# lie-some
+# lie-denodify
 
 
 ## API
 
 ```bash
-npm install lie-some
+npm install lie-denodify
 ```
 
 ```javascript
-var some = require('lie-some');
+var denodify = require('lie-denodify');
 ```
 
-###some
+###denodify
 
 ```javascript
-some(array of promises)
+denodify(function)
 ```
 
-Similar to [lie-all](https://github.com/calvinmetcalf/lie-all) but will only throw an error if all of the promises throw errors, otherwise returns an array of whichever values succeded in the order that they completed, on error returns an array of errors.
+takes as an argument a function which has a callback as it's last argument, returns a function that acts identically except it returns a promice instead of taking a callback.
 
 ## License
 

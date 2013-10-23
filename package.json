@@ -1,14 +1,14 @@
 {
-  "name": "lie-some",
+  "name": "lie-denodify",
   "version": "0.1.0",
-  "description": "lie some why don't you",
-  "main": "lib/some.js",
+  "description": "turn a node style callback into a promise based one",
+  "main": "lib/denodify.js",
   "scripts": {
     "test": "./node_modules/istanbul/lib/cli.js test ./node_modules/mocha/bin/_mocha test/test.js"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/calvinmetcalf/lie-some.git"
+    "url": "git://github.com/calvinmetcalf/lie-denodify.git"
   },
   "keywords": [
     "lie",
@@ -17,20 +17,16 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/calvinmetcalf/lie-some/issues"
+    "url": "https://github.com/calvinmetcalf/lie-denodify/issues"
   },
   "devDependencies": {
     "mocha-as-promised": "~1.4.0",
     "chai-as-promised": "~4.0.0",
     "chai": "~1.8.1",
     "mocha": "~1.13.0",
-    "istanbul": "~0.1.44",
-    "lie-resolve": "~0.1.0",
-    "lie-reject": "~0.1.1",
-    "lie-all": "~0.1.0"
+    "istanbul": "~0.1.44"
   },
   "dependencies": {
-    "lie": "~2.0.6",
-    "lie-cast": "~0.1.1"
+    "lie": "~2.0.6"
   }
 }

@@ -1,50 +1,58 @@
 'use strict';
-var some = require('../lib/some');
-var resolve = require('lie-resolve');
-var reject = require('lie-reject');
-var all = require('lie-all');
+var denodify = require('../lib/denodify');
 require("mocha-as-promised")();
 var chai = require("chai");
 chai.should();
 var chaiAsPromised = require("chai-as-promised");
 chai.use(chaiAsPromised);
-describe("some", function() {
-    it('should work',function(){
-        var a = some([resolve(1),resolve(3),resolve(5),resolve(7),resolve(9)]);
-        return all([a.should.eventually.include.members([1,3,5,7,9]),a.should.eventually.have.length(5)]);
+describe("denodify",function(){
+    describe('singleValue',function(){
+        var nodeLike = denodify(function(a,cb){
+            if(typeof a === 'number'){
+                cb(null,a);
+            }else if(typeof a === 'string'){
+                cb(a);
+            }
+        });
+        it('should work',function(){
+            return nodeLike(5).should.become(5);
+        });
+        it('should throw',function(){
+            return nodeLike('boo').should.be.rejected.and.become('boo');
+        });
     });
-    it('should work mixed',function(){
-        var a = some([resolve(1),3,resolve(5),resolve(7),resolve(9)]);
-        return all([a.should.eventually.include.members([1,3,5,7,9]),a.should.eventually.have.length(5)]);
-    });
-    it('should work with a rejection',function(){
-        var a = some([resolve(1),reject(3),resolve(5),resolve(7),resolve(9)]);
-        return all([a.should.eventually.include.members([1,5,7,9]),a.should.eventually.have.length(4)]);
-    });
-    it('should work with nested values',function(){
-        var a = some([resolve(resolve(1)),resolve(3),resolve(5),resolve(7),resolve(9)]);
-        return all([a.should.eventually.include.members([1,3,5,7,9]),a.should.eventually.have.length(5)]);
-    });
-    it('should work with very nested values',function(){
-        var a = some([resolve().then(function(){
-            return resolve(1);
-        }),resolve(3),resolve(5),resolve(7),resolve(9)]);
-        return all([a.should.eventually.include.members([1,3,5,7,9]),a.should.eventually.have.length(5)]);
-    });
-    it('should work when all are rejected',function(){
-         var a = some([reject(1),reject(3),reject(5),reject(7),reject(9)]);
-        return all([a.should.be.rejected.and.eventually.include.members([1,3,5,7,9]),a.should.be.rejected.and.eventually.have.length(5)]);
-    });
-    it('should work when all are rejected including a thrown then',function(){
-         var a = some([resolve().then(function(){
-            throw 1;
-        }),reject(3),reject(5),reject(7),reject(9)]);
-        return all([a.should.be.rejected.and.eventually.include.members([1,3,5,7,9]),a.should.be.rejected.and.eventually.have.length(5)]);
-    });
-    it('should work when all are rejected including a nested one',function(){
-         var a = some([resolve().then(function(){
-            return reject(1);
-        }),reject(3),reject(5),reject(7),reject(9)]);
-        return all([a.should.be.rejected.and.eventually.include.members([1,3,5,7,9]),a.should.be.rejected.and.eventually.have.length(5)]);
+    describe('multivalue',function(){
+        var nodeLike = denodify(function(a,b,cb){
+            if(typeof a === 'number'&&typeof b === 'number'){
+                cb(null,a+b);
+            }else if(typeof a === 'number'&&typeof b === 'function'){
+                b(null,a);
+            }else if(typeof a === 'string'){
+                if(typeof b === 'function'){
+                    b(a);
+                }else{
+                    cb(a);
+                }
+            }else if(typeof b === 'string'){
+                cb(b);
+            }else if(typeof a === 'function'){
+                a('need a value');
+            }
+        });
+        it('should work',function(){
+            return nodeLike(5).should.become(5);
+        });
+        it('should work with 2 numbers',function(){
+            return nodeLike(2,3).should.become(5);
+        });
+        it('should work with a number and a string',function(){
+            return nodeLike(2,'boo').should.be.rejected.and.become('boo');
+        });
+        it('should work with a number and a string',function(){
+            return nodeLike('boo').should.be.rejected.and.become('boo');
+        });
+        it('should work with a no arguments',function(){
+            return nodeLike().should.be.rejected.and.become('need a value');
+        });
     });
 });
