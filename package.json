@@ -1,14 +1,14 @@
 {
-  "name": "lie-all",
+  "name": "lie-reject",
   "version": "0.1.0",
-  "description": "all of the lies",
-  "main": "lib/all.js",
+  "description": "reject all the lies",
+  "main": "lib/reject.js",
   "scripts": {
     "test": "./node_modules/istanbul/lib/cli.js test ./node_modules/mocha/bin/_mocha test/test.js"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/calvinmetcalf/lie-all.git"
+    "url": "git://github.com/calvinmetcalf/lie-reject.git"
   },
   "keywords": [
     "lie",
@@ -17,7 +17,7 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/calvinmetcalf/lie-all/issues"
+    "url": "https://github.com/calvinmetcalf/lie-reject/issues"
   },
   "devDependencies": {
     "mocha-as-promised": "~1.4.0",
@@ -27,7 +27,6 @@
     "istanbul": "~0.1.44"
   },
   "dependencies": {
-    "lie": "~2.0.6",
-    "lie-cast": "~0.1.1"
+    "lie": "~2.0.6"
   }
 }
