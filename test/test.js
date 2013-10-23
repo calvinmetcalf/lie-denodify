@@ -1,52 +1,50 @@
 'use strict';
-var race = require('../lib/race');
-var promise = require('lie');
+var some = require('../lib/some');
+var resolve = require('lie-resolve');
+var reject = require('lie-reject');
+var all = require('lie-all');
 require("mocha-as-promised")();
 var chai = require("chai");
 chai.should();
 var chaiAsPromised = require("chai-as-promised");
 chai.use(chaiAsPromised);
-describe("race", function() {
-    /*not planning on testing this much
-      unless I can figure out a better
-      way to test something that is
-      inherently a race condition*/
+describe("some", function() {
     it('should work',function(){
-        return race([
-            promise(function(yes,no){
-                setTimeout(function(){
-                    yes('no');
-                },20);
-            }),
-            promise(function(yes,no){
-                setTimeout(function(){
-                    yes('yes');
-                },10);
-            }),
-            promise(function(yes,no){
-                setTimeout(function(){
-                    yes('seriously no');
-                },30);
-            })
-        ]).should.become('yes');
+        var a = some([resolve(1),resolve(3),resolve(5),resolve(7),resolve(9)]);
+        return all([a.should.eventually.include.members([1,3,5,7,9]),a.should.eventually.have.length(5)]);
     });
-    it('should work with an error',function(){
-        return race([
-            promise(function(yes,no){
-                setTimeout(function(){
-                    yes('no');
-                },20);
-            }),
-            promise(function(yes,no){
-                setTimeout(function(){
-                    no('no');
-                },10);
-            }),
-            promise(function(yes,no){
-                setTimeout(function(){
-                    yes('seriously no');
-                },30);
-            })
-        ]).should.be.rejected.and.become('no');
+    it('should work mixed',function(){
+        var a = some([resolve(1),3,resolve(5),resolve(7),resolve(9)]);
+        return all([a.should.eventually.include.members([1,3,5,7,9]),a.should.eventually.have.length(5)]);
+    });
+    it('should work with a rejection',function(){
+        var a = some([resolve(1),reject(3),resolve(5),resolve(7),resolve(9)]);
+        return all([a.should.eventually.include.members([1,5,7,9]),a.should.eventually.have.length(4)]);
+    });
+    it('should work with nested values',function(){
+        var a = some([resolve(resolve(1)),resolve(3),resolve(5),resolve(7),resolve(9)]);
+        return all([a.should.eventually.include.members([1,3,5,7,9]),a.should.eventually.have.length(5)]);
+    });
+    it('should work with very nested values',function(){
+        var a = some([resolve().then(function(){
+            return resolve(1);
+        }),resolve(3),resolve(5),resolve(7),resolve(9)]);
+        return all([a.should.eventually.include.members([1,3,5,7,9]),a.should.eventually.have.length(5)]);
+    });
+    it('should work when all are rejected',function(){
+         var a = some([reject(1),reject(3),reject(5),reject(7),reject(9)]);
+        return all([a.should.be.rejected.and.eventually.include.members([1,3,5,7,9]),a.should.be.rejected.and.eventually.have.length(5)]);
+    });
+    it('should work when all are rejected including a thrown then',function(){
+         var a = some([resolve().then(function(){
+            throw 1;
+        }),reject(3),reject(5),reject(7),reject(9)]);
+        return all([a.should.be.rejected.and.eventually.include.members([1,3,5,7,9]),a.should.be.rejected.and.eventually.have.length(5)]);
+    });
+    it('should work when all are rejected including a nested one',function(){
+         var a = some([resolve().then(function(){
+            return reject(1);
+        }),reject(3),reject(5),reject(7),reject(9)]);
+        return all([a.should.be.rejected.and.eventually.include.members([1,3,5,7,9]),a.should.be.rejected.and.eventually.have.length(5)]);
     });
 });

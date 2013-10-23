@@ -1,25 +1,23 @@
-# lie-race
+# lie-some
 
 
 ## API
 
 ```bash
-npm install lie-race
+npm install lie-some
 ```
 
 ```javascript
-var race = require('lie-race');
+var some = require('lie-some');
 ```
 
-###race
+###some
 
 ```javascript
-race(array of promises)
+some(array of promises)
 ```
 
-resolved with whatever value or error that resolves first.
-
-should be obvious but fyi, this can cause race conditions.
+Similar to [lie-all](https://github.com/calvinmetcalf/lie-all) but will only throw an error if all of the promises throw errors, otherwise returns an array of whichever values succeded in the order that they completed, on error returns an array of errors.
 
 ## License
 
