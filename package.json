@@ -1,6 +1,6 @@
 {
   "name": "lie-denodify",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "turn a node style callback into a promise based one",
   "main": "lib/denodify.js",
   "scripts": {
