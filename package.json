@@ -27,6 +27,6 @@
     "istanbul": "~0.1.44"
   },
   "dependencies": {
-    "lie": "~2.3.0"
+    "lie": "~2.5.1"
   }
 }
