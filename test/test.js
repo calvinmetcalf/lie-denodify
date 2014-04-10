@@ -55,4 +55,12 @@ describe("denodify",function(){
             return nodeLike().should.be.rejected.and.become('need a value');
         });
     });
+    describe('callback with multiple values', function () {
+        var nodeLike = denodify(function (a, cb) {
+            cb(null, a, this.other);
+        }, {other: 9});
+        it('should work', function () {
+            return nodeLike(3).should.become([3, 9]);
+        });
+    });
 });
