@@ -27,7 +27,6 @@
     "istanbul": "~0.1.44"
   },
   "dependencies": {
-    "argsarray": "0.0.1",
     "lie": "^2.6.0"
   }
 }
