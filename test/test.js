@@ -70,11 +70,28 @@ describe("denodify",function(){
         var nodeLike = denodify(function (a, cb) {
             cb(null, a, this.other);
         }, {other: 9});
+        var nodeLike2 = denodify(function (a, b, cb) {
+            cb(null, a + b);
+        });
         it('should work', function () {
             return nodeLike(3).should.become([3, 9]);
         });
         it('should work with a promise', function () {
             return nodeLike(Promise.resolve(3)).should.become([3, 9]);
+        });
+        it('should work when called with multiple values', function () {
+            var nineP = Promise.resolve(9);
+            var obj = {
+                then: nineP.then.bind(nineP)
+            };
+            return nodeLike2(Promise.resolve(3), obj).should.become(12);
+        });
+        it('should work when called with multiple values with the fake promise first', function () {
+            var nineP = Promise.resolve(9);
+            var obj = {
+                then: nineP.then.bind(nineP)
+            };
+            return nodeLike2(obj, Promise.resolve(3)).should.become(12);
         });
     });
 });
