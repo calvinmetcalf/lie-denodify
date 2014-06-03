@@ -1,11 +1,11 @@
 {
   "name": "lie-denodify",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "turn a node style callback into a promise based one",
   "main": "lib/denodify.js",
   "scripts": {
     "test": "istanbul test ./node_modules/mocha/bin/_mocha test/test.js -- -R spec",
-    "travis" : "npm test --coverage && istanbul check-coverage"
+    "travis": "npm test --coverage && istanbul check-coverage"
   },
   "repository": {
     "type": "git",
