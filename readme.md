@@ -1,4 +1,4 @@
-# lie-denodify
+# lie-denodify [![Build Status](https://travis-ci.org/calvinmetcalf/lie-denodify.svg)](https://travis-ci.org/calvinmetcalf/lie-denodify)
 
 
 ## API
