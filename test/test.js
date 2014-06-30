@@ -1,12 +1,12 @@
 'use strict';
 var denodify = require('../lib/denodify');
 var Promise = require('lie');
-require("mocha-as-promised")();
-var chai = require("chai");
+require('mocha-as-promised')();
+var chai = require('chai');
 chai.should();
-var chaiAsPromised = require("chai-as-promised");
+var chaiAsPromised = require('chai-as-promised');
 chai.use(chaiAsPromised);
-describe("denodify",function(){
+describe('denodify',function(){
     describe('singleValue',function(){
         var nodeLike = denodify(function(a,cb){
             if(typeof a === 'number'){
@@ -92,6 +92,21 @@ describe("denodify",function(){
                 then: nineP.then.bind(nineP)
             };
             return nodeLike2(obj, Promise.resolve(3)).should.become(12);
+        });
+    });
+    describe('edge cases', function () {
+        it('should reject when a fake promise getter throws', function () {
+             var nodeLike = denodify(function (a, b, cb) {
+                cb(null, a + b);
+            });
+
+            var e = new Error('foo');
+            var obj = {
+                get then() {
+                  throw e;
+                }
+              };
+            return nodeLike(obj, Promise.resolve(3)).should.be.rejected.and.become(e);
         });
     });
 });

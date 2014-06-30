@@ -1,5 +1,6 @@
 {
 	"curly": true,
+  "node": true,
 	"eqeqeq": true,
 	"latedef": "nofunc",
 	"undef": true,
@@ -7,5 +8,13 @@
 	"trailing":true,
 	"camelcase":true,
 	"quotmark":"single",
-	"node":true
+  "predef": [
+    "describe",
+    "it",
+    "after",
+    "beforeEach",
+    "afterEach",
+    "testUtils",
+    "emit"
+  ]
 }
